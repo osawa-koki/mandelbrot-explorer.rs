@@ -28,6 +28,10 @@ jobs:
         run: cargo build --verbose --release
       - name: Execute
         run: cargo run --release
+      - name: Install ffmpeg
+        run: sudo apt update && sudo apt install ffmpeg
+      - name: Convert to mp4
+        run: ffmpeg -r 30 -i ./dist/%08d.png -vcodec libx264 -pix_fmt yuv420p -r 60 ./fruit.mp4
       - name: Move artifact
         run: mv ./fruit.mp4 ./public/fruit.mp4
       - name: Upload artifact
