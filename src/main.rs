@@ -63,12 +63,7 @@ fn write_image(
 ) -> Result<(), std::io::Error> {
     let file = File::create(filename)?;
     let encoder = PNGEncoder::new(file);
-    encoder.encode(
-        pixels,
-        bounds.0 as u32,
-        bounds.1 as u32,
-        ColorType::Gray(8),
-    )?;
+    encoder.encode(pixels, bounds.0 as u32, bounds.1 as u32, ColorType::Gray(8))?;
     Ok(())
 }
 
