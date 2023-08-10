@@ -50,7 +50,7 @@ fn render(pixels: &mut [u8], bounds: (usize, usize), upper_left: Complex, lower_
                 pixel2point_cenverter(bounds, (col, row), upper_left.clone(), lower_right.clone());
             pixels[row * bounds.0 + col] = match escape_time(point, THRESHOULD) {
                 None => 0,
-                Some(count) => (THRESHOULD - count as u32).try_into().unwrap(),
+                Some(count) => (THRESHOULD - count).try_into().unwrap(),
             };
         }
     }
@@ -64,7 +64,7 @@ fn write_image(
     let file = File::create(filename)?;
     let encoder = PNGEncoder::new(file);
     encoder.encode(
-        &pixels,
+        pixels,
         bounds.0 as u32,
         bounds.1 as u32,
         ColorType::Gray(8),
@@ -128,7 +128,7 @@ fn main() {
         .parse()
         .expect("\"DEFAULT_HEIGHT\" param must be FLOAT type");
 
-    mkdir(&format!("./dist/"));
+    mkdir("./dist/");
 
     for i in start..upto {
         println!(
@@ -157,7 +157,7 @@ fn main() {
             &format!("./dist/{0: >08}.png", i),
             (
                 (file_size_height as f64 * aspect_ratio) as usize,
-                file_size_height as usize,
+                file_size_height,
             ),
             upper_left,
             lower_right,
