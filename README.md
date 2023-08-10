@@ -6,5 +6,6 @@
 
 ```shell
 docker build -t mandelbrot-explorer-rs .
-docker run -it --rm --name mandelbrot-explorer-rs mandelbrot-explorer-rs
+docker run -it --name mandelbrot-explorer-rs mandelbrot-explorer-rs
+docker cp mandelbrot-explorer-rs:/work/fruit.mp4 fruit.mp4
 ```
