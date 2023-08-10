@@ -74,7 +74,9 @@ fn handler(path: &str, bounds: (usize, usize), upper_left: Complex, lower_right:
 }
 
 fn mkdir(dir_name: &str) {
-    if let Err(why) = fs::create_dir(dir_name) { println!("! {:?}", why.kind()) }
+    if let Err(why) = fs::create_dir(dir_name) {
+        println!("! {:?}", why.kind())
+    }
 }
 
 fn main() {
